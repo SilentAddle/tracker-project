@@ -25,22 +25,17 @@ http://learnpythonthehardway.org/book/
 
 ## Starting from the Terminal
 
-To try the example application, type the following in the terminal:
 
-```
-cd ex50
-python bin/app.py
-```
-
-Alternatively, open the file in ex50/bin and click the green Run
-button!
-
-## Configuration
-
-You can configure your Python version and `PYTHONPATH` used in
-Cloud9 > Preferences > Project Settings > Language Support.
 
 ## Support & Documentation
 
 Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
 To watch some training videos, visit http://www.youtube.com/user/c9ide.
+
+# Sources 
+## Extending the User Profile
+In order to extend the user profile, code was sampled from this django tutorial project.
+https://docs.djangoproject.com/en/1.11/topics/auth/customizing/#extending-the-existing-user-model
+
+## User Authentication
+The user authentication used in this project was cloned from the previous "e-commerce" project.

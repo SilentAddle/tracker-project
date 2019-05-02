@@ -1,11 +1,9 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from .models import Profile
 
 # Create your views here.
 def index(request):
@@ -54,6 +52,7 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have been registered!")
+                Profile.objects.create(user=request.user)
                 return redirect(reverse('index'))
             else:
                 messages.error(request, "Unable to register your account at this time.")
@@ -66,7 +65,9 @@ def registration(request):
     
 def user_profile(request):
     """The user's profile page"""
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    if request.user.is_authenticated():
+        user = User.objects.get(email=request.user.email)
+        profile = Profile.objects.get(user=request.user)
+        return render(request, 'profile.html', {"profile": user, "user": profile,})
     
     

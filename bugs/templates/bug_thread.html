@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_tags %}
+
+{% block page_title %}Login Page{%endblock %}
+
+{% block page_heading %}User Login{% endblock %}
+
+{% block content %}
+    <div class="row row-flex">
+        <div class="col-sm-1"><h1>{{ bug.credits }}</h1></div>
+        <div class="col-sm-8"><h1>{{ bug.title }}</h1><foo>{{ bug.user }}</foo></div>
+        <div class="col-sm-3"></div>
+    </div>
+    {{ bug.description }}
+{% endblock %}

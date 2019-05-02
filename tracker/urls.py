@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import urls as urls_accounts
 from submissions import urls as urls_submissions
+from about import urls as urls_about
+from bugs import urls as urls_bugs
 from submissions.views import all_submissions
 
 urlpatterns = [
@@ -24,4 +26,6 @@ urlpatterns = [
     url(r'^$', all_submissions, name='index'),
     url(r'^accounts/', include(urls_accounts)),
     url(r'^submissions/', include(urls_submissions)),
+    url(r'^about/', include(urls_about)),
+    url(r'^bugs/', include(urls_bugs)),
 ]
