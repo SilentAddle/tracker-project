@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% block head_js %}
-    {% endblock head_js %}
 </head>
 <body>
     <!-- Fixed masthead -->
@@ -29,13 +27,13 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                        <li><a href="">Download</a></li>
+                        <li><a href="#">Download</a></li>
                         <li><a href="">Media</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="{% url 'bugs' %}">Bugs</a></li>
-                        <li><a href="">Features</a></li>
+                        <li><a href="{% url 'features' %}">Features</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="#">Credits</a></li>
+                        <li><a href="#">Credits: {{ user.profile.credits }}</a></li>
                         <li><a href="{% url 'profile' %}">Profile</a></li>
                         <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {%  else %}

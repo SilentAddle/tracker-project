@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Bugs
 from .forms import BugForm
 
@@ -25,10 +26,24 @@ def submit_bug(request, pk=None):
             bug.user= request.user
             bug.save()
             
-            #form.user = request.user
-            #bug = form.save()
             return redirect(thread, bug.pk)
-            #return render(request, "bug_temp.html", {'form': form})
     else:
         form = BugForm()
     return render(request, "bug_form.html", {'form': form})
+    
+@login_required()
+def updoot_bug(request):
+    bug_id = request.POST.get("bug_id")
+    credit = request.POST.get("credit")
+    
+    
+    obj = get_object_or_404(Bugs, pk=bug_id)
+    obj.credits += int(credit)
+    obj.save()
+    
+    user_id = request.user.id
+    user = get_object_or_404(User, pk=user_id)
+    user.profile.credits -= int(credit)
+    user.profile.save()
+    
+    return redirect(thread, bug_id)

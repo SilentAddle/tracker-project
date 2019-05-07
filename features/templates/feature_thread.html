@@ -8,13 +8,13 @@
 
 {% block content %}
     <div class="row row-flex">
-        <div class="col-sm-1"><h1>{{ bug.credits }}</h1></div>
-        <div class="col-sm-8"><h1>{{ bug.title }}</h1><foo>{{ bug.user }}</foo></div>
+        <div class="col-sm-1"><h1>{{ feature.credits }}</h1></div>
+        <div class="col-sm-8"><h1>{{ feature.title }}</h1><foo>{{ feature.user }}</foo></div>
         <div class="col-sm-3">
             {% if user.is_authenticated %}
-                <form class="form-inline" method="post" action="{% url 'updoot_bug' %}">
+                <form class="form-inline" method="post" action="{% url 'updoot_feature' %}">
                     {% csrf_token %}
-                    <input type="hidden" name="bug_id" value="{{ bug.id }}" />
+                    <input type="hidden" name="feature_id" value="{{ feature.id }}" />
                     <input type="range" min="1" max="{{ user.profile.credits }}" value="1" id="creditSlider" name="credit"> <span id="creditDisplay">1</span> / <span>{{ user.profile.credits }}</span><br />
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  UpVote</button>
                     <h5>cost: 1 credit</h5>
@@ -22,7 +22,7 @@
             {% endif %}
         </div>
     </div>
-    {{ bug.description }}
+    {{ feature.description }}
 {% endblock %}
 
 

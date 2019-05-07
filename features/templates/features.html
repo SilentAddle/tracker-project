@@ -8,22 +8,22 @@
 
 {% block content %}
 <p>
-    <form class="form-inline" method="post" action="{% url 'submit_bug' %}">
+    <form class="form-inline" method="post" action="{% url 'submit_feature' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Submit Bug</button>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Submit Feature</button>
     </form>
     
-{% for bug in bugs %}
+{% for feature in features %}
     <div class="row row-flex">
-        <a href="{% url 'bug-thread' bug.id %}">
-        <div class="col-sm-1"><h1>{{ bug.credits }}</h1></div>
-        <div class="col-sm-8"><h1>{{ bug.title }}</h1><foo>{{ bug.user }}</foo></div>
+        <a href="{% url 'thread' feature.id %}">
+        <div class="col-sm-1"><h1>{{ feature.credits }}</h1></div>
+        <div class="col-sm-8"><h1>{{ feature.title }}</h1><foo>{{ feature.user }}</foo></div>
         </a>
         <div class="col-sm-3">
             {% if user.is_authenticated %}
-                <form class="form-inline" method="post" action="{% url 'updoot_bug' %}">
+                <form class="form-inline" method="post" action="{% url 'updoot_feature' %}">
                     {% csrf_token %}
-                    <input type="hidden" name="bug_id" value="{{ bug.id }}" />
+                    <input type="hidden" name="feature_id" value="{{ feature.id }}" />
                     <input type="hidden" name="credit" value="1" />
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  UpVote</button>
                     <h5>cost: 1 credit</h5>

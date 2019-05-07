@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_tags %}
+
+{% block page_title %}Login Page{%endblock %}
+
+{% block page_heading %}User Login{% endblock %}
+
+{% block content %}
+    <h1>Submit New Feature</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | as_bootstrap }}
+        <h5>images are not required</h5>
+        <input type="hidden" name="user_id" value="{{ user.id }}" />
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+{% endblock %}
